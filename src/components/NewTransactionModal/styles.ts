@@ -1,18 +1,18 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import * as Dialog from '@radix-ui/react-dialog'
+import * as RadioGroup from '@radix-ui/react-radio-group'
 
-export const TransactionType = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
-  margin-top: 0.5rem;
-`
+/// ///////////////////// RADIX-UI ///////////////////// ///
+
+/// RADIO GROUP ///
 
 interface TransactionTypeButtonProps {
   variant: 'income' | 'outcome'
 }
 
-export const TransactionTypeButton = styled.button<TransactionTypeButtonProps>`
+interface T extends TransactionTypeButtonProps {} // You can remove this line and use the interface directly in the styled component
+
+export const TransactionTypeButton = styled(RadioGroup.Item)<T>`
   background: ${(props) => props.theme['gray-700']};
   padding: 1rem;
   display: flex;
@@ -30,6 +30,26 @@ export const TransactionTypeButton = styled.button<TransactionTypeButtonProps>`
     background: ${(props) => props.theme['gray-600']};
   }
 
+  ${(props) =>
+    props.variant === 'outcome' &&
+    css`
+      &:focus {
+        box-shadow: 0 0 0 2px ${props.theme['red-500']};
+      }
+    `};
+
+  &[data-state='checked'] {
+    color: ${(props) => props.theme.white};
+    background: ${(props) =>
+      props.variant === 'income'
+        ? props.theme['green-500']
+        : props.theme['red-500']};
+
+    svg {
+      color: ${(props) => props.theme.white};
+    }
+  }
+
   svg {
     color: ${(props) =>
       props.variant === 'income'
@@ -38,7 +58,14 @@ export const TransactionTypeButton = styled.button<TransactionTypeButtonProps>`
   }
 `
 
-/// RADIX-UI ///
+export const TransactionType = styled(RadioGroup.Root)`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 0.5rem;
+`
+
+/// MODAL ///
 
 export const StyledOverlay = styled(Dialog.Overlay)`
   position: fixed;
