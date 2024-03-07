@@ -1,41 +1,36 @@
+import { format } from 'date-fns'
+import { useContext } from 'react'
+import { TransactionsContext } from '../../contexts/TransactionsContext'
 import { SearchForm } from '../SearchForm'
 import {
+  PriceHighlight,
   TransactionsContainer,
   TransactionsTable,
-  PriceHighlight,
 } from './styles'
 
 export function TransactionsList() {
+  const { transactions } = useContext(TransactionsContext)
+
   return (
     <TransactionsContainer>
       <SearchForm />
 
       <TransactionsTable>
         <tbody>
-          <tr>
-            <td width="50%">Website Development</td>
-            <td>
-              <PriceHighlight variant="income">U$ 6.000,00</PriceHighlight>
-            </td>
-            <td>Sale</td>
-            <td>02/13/2024</td>
-          </tr>
-          <tr>
-            <td width="50%">Hamburguer</td>
-            <td>
-              <PriceHighlight variant="outcome">- U$ 23,00</PriceHighlight>
-            </td>
-            <td>Food</td>
-            <td>02/06/2024</td>
-          </tr>
-          <tr>
-            <td width="50%">Apartment rent</td>
-            <td>
-              <PriceHighlight variant="outcome">- U$ 737,00</PriceHighlight>
-            </td>
-            <td>Home</td>
-            <td>02/05/2024</td>
-          </tr>
+          {transactions.map(
+            ({ id, description, type, category, amount, createdAt }) => (
+              <tr key={id}>
+                <td width="50%">{description}</td>
+                <td>
+                  <PriceHighlight variant={type}>
+                    {type === 'outcome' ? `- ${amount}` : amount}
+                  </PriceHighlight>
+                </td>
+                <td>{category}</td>
+                <td>{format(new Date(createdAt), 'MM/dd/yyyy')}</td>
+              </tr>
+            ),
+          )}
         </tbody>
       </TransactionsTable>
     </TransactionsContainer>
