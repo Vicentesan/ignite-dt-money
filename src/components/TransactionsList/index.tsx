@@ -1,3 +1,4 @@
+import { SearchForm } from '../SearchForm'
 import {
   TransactionsContainer,
   TransactionsTable,
@@ -7,6 +8,8 @@ import {
 export function TransactionsList() {
   return (
     <TransactionsContainer>
+      <SearchForm />
+
       <TransactionsTable>
         <tbody>
           <tr>
