@@ -23,6 +23,22 @@
       "type": "outcome",
       "amount": 737,
       "createdAt": "2024-02-05T12:00:00.000Z"
+    },
+    {
+      "description": "Hotel",
+      "amount": 230,
+      "category": "Trip",
+      "type": "outcome",
+      "createdAt": "2024-03-08T21:57:51.077Z",
+      "id": 4
+    },
+    {
+      "description": "Flight JFK - YYZ",
+      "amount": 120,
+      "category": "Trip",
+      "type": "outcome",
+      "createdAt": "2024-03-08T22:10:02.752Z",
+      "id": 5
     }
   ]
 }
