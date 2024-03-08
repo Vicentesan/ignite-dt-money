@@ -1,16 +1,19 @@
 import { format } from 'date-fns'
-import { useContext } from 'react'
+import { useContextSelector } from 'use-context-selector'
 import { TransactionsContext } from '../../contexts/TransactionsContext'
+import { priceFormater } from '../../utils/formater'
 import { SearchForm } from '../SearchForm'
 import {
   PriceHighlight,
   TransactionsContainer,
   TransactionsTable,
 } from './styles'
-import { priceFormater } from '../../utils/formater'
 
 export function TransactionsList() {
-  const { transactions } = useContext(TransactionsContext)
+  const transactions = useContextSelector(
+    TransactionsContext,
+    (context) => context.transactions,
+  )
 
   return (
     <TransactionsContainer>
