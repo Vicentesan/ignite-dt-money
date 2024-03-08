@@ -26,10 +26,6 @@ export const TransactionTypeButton = styled(RadioGroup.Item)<T>`
 
   transition: all 0.3s;
 
-  &:hover {
-    background: ${(props) => props.theme['gray-600']};
-  }
-
   ${(props) =>
     props.variant === 'outcome' &&
     css`
@@ -118,7 +114,12 @@ export const StyledContent = styled(Dialog.Content)`
 
       transition: all 0.3s;
 
-      &:hover {
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+
+      &:not(:disabled):hover {
         background: ${(props) => props.theme['green-300']};
       }
     }
