@@ -14,7 +14,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 
 const newTransactionFormSchema = z.object({
   description: z.string(),
-  price: z.number(),
+  amount: z.number(),
   category: z.string(),
   type: z.enum(['income', 'outcome']),
 })
@@ -59,9 +59,9 @@ export function NewTransactionModal() {
           />
           <input
             type="number"
-            placeholder="Price"
+            placeholder="Amount"
             required
-            {...register('price', { valueAsNumber: true })}
+            {...register('amount', { valueAsNumber: true })}
           />
           <input
             type="text"
