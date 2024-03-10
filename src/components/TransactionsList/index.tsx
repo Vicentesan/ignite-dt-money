@@ -1,7 +1,7 @@
 import { format } from 'date-fns'
 import { useContextSelector } from 'use-context-selector'
 import { TransactionsContext } from '../../contexts/TransactionsContext'
-import { priceFormater } from '../../utils/formater'
+import { priceFormatter } from '../../utils/formater'
 import { SearchForm } from '../SearchForm'
 import {
   PriceHighlight,
@@ -28,8 +28,8 @@ export function TransactionsList() {
                 <td>
                   <PriceHighlight variant={type}>
                     {type === 'outcome'
-                      ? `- ${priceFormater.format(amount)}`
-                      : priceFormater.format(amount)}
+                      ? `- ${priceFormatter.format(amount)}`
+                      : priceFormatter.format(amount)}
                   </PriceHighlight>
                 </td>
                 <td>{category}</td>
