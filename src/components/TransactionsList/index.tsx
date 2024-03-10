@@ -1,7 +1,7 @@
 import { format } from 'date-fns'
 import { useContextSelector } from 'use-context-selector'
 import { TransactionsContext } from '../../contexts/TransactionsContext'
-import { priceFormatter } from '../../utils/formater'
+import { priceFormatter } from '../../utils/formatter'
 import { SearchForm } from '../SearchForm'
 import {
   PriceHighlight,
